@@ -2,10 +2,14 @@ package com.t3h.web_demo.controller;
 
 import com.t3h.web_demo.storage.dto.Person;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 @Controller // xác định file điều hướg req/res dạng restful
 @Log4j // log in ra console thay cho system.out
@@ -34,6 +38,29 @@ public class PersonController {
         //ModelAndView: điều hướng file html, tempalte engine là thymeleaf
         // spring-boot thymeleaf: tự động cấu hình ăn html trong resource/templetes
         return new ModelAndView("person_register");
+    }
+
+    @GetMapping("form-login")
+    public ModelAndView formLogin() {
+        return new ModelAndView("form_login");
+    }
+
+    @PostMapping("/api/login")
+    public ResponseEntity<Map> login(@RequestBody Map loginRequest) {
+        String username = (String) loginRequest.get("username");
+        String pw = (String) loginRequest.get("pw");
+        // ktra user/pw -> rỗng -> trả code 401 + message dạng json
+        if (StringUtils.isAnyBlank(username, pw)) {
+            return new ResponseEntity<>(
+                    Map.of("errorMessage", "username / pw empty",
+                            "code", 401),
+                    HttpStatus.UNAUTHORIZED
+            );
+        }
+
+        return ResponseEntity.ok(
+                Map.of("errorMessage", "",
+                        "code", 200));
     }
 
 }

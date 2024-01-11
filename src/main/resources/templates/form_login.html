@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<script>
+    $(document).ready(function () {
+        $("#login").click(function (event) {
+            event.preventDefault(); //prevent default action
+            //get data from textbox use jquery via idTag
+            let username = $("#username").val();
+            let pw = $("#pw").val();
+            console.log(`${username}; ${pw}`); // es6 string template
+            let loginReq = {
+                "username": username,
+                "pw": pw
+            };
+
+            let myJsonLogin = '{"name":"John", "age":30, "city":"New York"}';
+            $.ajax({
+                url: "/api/login",
+                type: "POST",
+                data: JSON.stringify(loginReq),// convert object to json
+                contentType: "application/json",// xem file content type pdf, slide web co ban
+                success: function (data, textStatus) {
+                    console.log("HANDLE success");
+                    console.log(data);
+                    alert(JSON.stringify(data.responseJSON));
+                },
+                error: function (data, textStatus) {
+                    console.log("HANDLE ERROR");
+                    console.log(data);
+                    alert(JSON.stringify(data.responseJSON));
+                }
+
+            });//end ajax
+        });// end evvent clieck
+    });// end doccment
+
+</script>
+
+<body>
+Username: <input type="text" id="username"><br>
+Password: <input type="text" id="pw"><br>
+<button id="login"> LOGIN</button>
+</body>
+</html>
