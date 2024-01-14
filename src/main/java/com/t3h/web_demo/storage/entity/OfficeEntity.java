@@ -13,26 +13,20 @@ import lombok.Data;
 public class OfficeEntity {
     @Id // mapping field là khóa chính PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("officecode")
-    @Column(name = "officecode")
+    @JsonProperty("officecode") // mapping ra json
     private String officeCode;
     // những cột còng lại trùng tên cột, ko cần dùng @Column để định nghĩa cột
-    @JsonProperty("city") // định nghĩ field mappsing json filed
     private String city;
-    @JsonProperty("phone")
     private String phone;
     @JsonProperty("addressline1")
-    @Column(name = "addressline1")
     private String addressLine1;
     @JsonProperty("addressline2")
-    @Column(name = "addressline2")
     private String addressLine2;
     @JsonProperty("state")
     private String state;
     @JsonProperty("country")
     private String country;
     @JsonProperty("postalcode")
-    @Column(name = "postalcode")
     private String postalCode;
     @JsonProperty("territory")
     private String territory;
