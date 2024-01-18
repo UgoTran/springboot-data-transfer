@@ -1,6 +1,7 @@
 package com.t3h.web_demo.controller;
 
 import com.t3h.web_demo.service.OfficeService;
+import com.t3h.web_demo.storage.dto.OfficeEmployeeProjection;
 import com.t3h.web_demo.storage.entity.OfficeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * xử lý diều hướng client, diều hướng service
@@ -32,10 +34,31 @@ public class OfficeController {
 
     }
 
+    @GetMapping("/api/v1/offices2")
+    @ResponseBody
+    public ResponseEntity<List<Map>> offices2() {
+        return ResponseEntity.ok(officeService.getAll2());
+
+    }
+
+    @GetMapping("/api/v1/offices3")
+    @ResponseBody
+    public ResponseEntity<List<OfficeEmployeeProjection>> offices3() {
+        return ResponseEntity.ok(officeService.getAll3());
+
+    }
+
     @GetMapping("/api/v1/offices/{officeCode}")
     @ResponseBody // trả kq ra body dạng json mặc định
     public ResponseEntity<OfficeEntity> officeByCode(@PathVariable String officeCode) {
         return ResponseEntity.ok(officeService.getByOfficeCode(officeCode));
+
+    }
+
+    @GetMapping("/api/v1/offices2/{officeCode}")
+    @ResponseBody // trả kq ra body dạng json mặc định
+    public ResponseEntity<OfficeEntity> officeByCode2(@PathVariable String officeCode) {
+        return ResponseEntity.ok(officeService.getByOfficeCode2(officeCode));
 
     }
 }

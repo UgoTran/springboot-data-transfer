@@ -1,12 +1,14 @@
 package com.t3h.web_demo.service.impl;
 
 import com.t3h.web_demo.service.OfficeService;
+import com.t3h.web_demo.storage.dto.OfficeEmployeeProjection;
 import com.t3h.web_demo.storage.entity.OfficeEntity;
 import com.t3h.web_demo.storage.repository.OfficeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * xxxService: quy ước đăt tên
@@ -31,7 +33,22 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
+    public List<Map> getAll2() {
+        return officeRepo.findAll2();
+    }
+
+    @Override
+    public List<OfficeEmployeeProjection> getAll3() {
+        return officeRepo.findAll3();
+    }
+
+    @Override
     public OfficeEntity getByOfficeCode(String code) {
         return officeRepo.getByOfficeCode(code);
+    }
+
+    @Override
+    public OfficeEntity getByOfficeCode2(String code) {
+        return officeRepo.findOneByCode(code);
     }
 }
