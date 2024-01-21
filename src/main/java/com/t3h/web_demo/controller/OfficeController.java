@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -61,4 +62,16 @@ public class OfficeController {
         return ResponseEntity.ok(officeService.getByOfficeCode2(officeCode));
 
     }
+
+    @GetMapping("/v1/offices")
+    public ModelAndView officesView() {
+        ModelAndView offices = new ModelAndView("offices");
+        List<OfficeEntity> officeEntities = officeService.getAll();
+        offices.addObject("offices", officeEntities);
+        offices.addObject("count", officeEntities.size());
+
+        return offices;
+
+    }
+
 }

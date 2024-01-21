@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offices</title>
+</head>
+<body>
+  office<strong th:text = "${count}"> </strong>
+  <table border="2">
+    <thead>
+      <tr>
+        <td>Office Code</td>
+        <td>City</td>
+        <td>Phone</td>
+        <td>Address Line 1</td>
+        <td>Address Line 2</td>
+        <td>State</td>
+        <td>Country</td>
+        <td>Postal Code</td>
+        <td>Territory</td>
+      </tr>
+
+    </thead>
+
+    <tbody>
+      <tr th:each="of : ${offices}">
+        <td th:text="${of.officeCode}"></td>
+        <td th:text="${of.city}"></td>
+        <td th:text="${of.phone}"></td>
+        <td th:text="${of.addressLine1}"></td>
+        <td th:text="${of.addressLine2}"></td>
+        <td th:text="${of.state}"></td>
+        <td th:text="${of.country}"></td>
+        <td th:text="${of.postalCode}"></td>
+        <td th:text="${of.territory}"></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</body>
+</html>
