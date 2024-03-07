@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller // xác định file điều hướg req/res dạng restful
@@ -61,6 +64,48 @@ public class PersonController {
         return ResponseEntity.ok(
                 Map.of("errorMessage", "",
                         "code", 200));
+    }
+
+    @GetMapping("persons")
+    public ModelAndView personsView() {
+        ModelAndView personsView = new ModelAndView("persons");
+        List<Map> persons = new ArrayList<>();
+
+        persons.add(
+                Map.of(
+                        "id", 1,
+                        "name", "th",
+                        "birthDay", LocalDate.now()
+                )
+        );
+        persons.add(
+                Map.of(
+                        "id", 2,
+                        "name", "aaaa",
+                        "birthDay", LocalDate.now()
+                )
+        );
+
+        // thêm persons vào view
+        personsView.addObject("persons", persons);
+        personsView.addObject("count", persons.size());
+
+        return personsView;
+    }
+
+    @GetMapping("persons/{personId}")
+    public ModelAndView personsView(@PathVariable Integer personId) {
+        ModelAndView personsView = new ModelAndView("persons");
+        Map person = Map.of(
+                "id", 1,
+                "name", "thasdas",
+                "birthDay", LocalDate.now()
+        );
+
+        // thêm person vào view
+        personsView.addObject("person", person);
+
+        return personsView;
     }
 
 }
