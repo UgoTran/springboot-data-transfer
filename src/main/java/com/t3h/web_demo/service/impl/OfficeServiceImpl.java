@@ -28,6 +28,10 @@ public class OfficeServiceImpl implements OfficeService {
         // xxrepo.findAll = select * from offices
         // hàm có sẳn trong module spring data, cụ thể I JpaRepository
         List<OfficeEntity> offices = officeRepo.findAll();
+        //xay ra loi
+        if (offices.size()< 100){
+            throw new IllegalArgumentException("Loi nem tu service");
+        }
 
         return offices;
     }
