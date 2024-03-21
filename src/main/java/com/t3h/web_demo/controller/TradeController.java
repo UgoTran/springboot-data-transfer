@@ -1,11 +1,12 @@
 package com.t3h.web_demo.controller;
 
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController // xác định file điều hướg req/res dạng restful
-@Log4j // log in ra console thay cho system.out
+ @Slf4j // log in ra console thay cho system.out
 public class TradeController {
 
     //tạo req GET

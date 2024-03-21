@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController // xác định file điều hướg req/res dạng restful
-@Log4j // log in ra console thay cho system.out
+@Slf4j // log in ra console thay cho system.out
 public class OrderController {
 
     /**
