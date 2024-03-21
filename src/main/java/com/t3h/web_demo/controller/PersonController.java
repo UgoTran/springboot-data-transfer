@@ -2,6 +2,7 @@ package com.t3h.web_demo.controller;
 
 import com.t3h.web_demo.storage.dto.Person;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller // xác định file điều hướg req/res dạng restful
-@Log4j // log in ra console thay cho system.out
+@Slf4j // log in ra console thay cho system.out
 public class PersonController {
 
     //tạo req GET, // hứng data trong body request
@@ -43,7 +44,7 @@ public class PersonController {
         return new ModelAndView("person_register");
     }
 
-    @GetMapping("form-login")
+    @GetMapping(value = {"/form-login", "/login"})
     public ModelAndView formLogin() {
         return new ModelAndView("form_login");
     }

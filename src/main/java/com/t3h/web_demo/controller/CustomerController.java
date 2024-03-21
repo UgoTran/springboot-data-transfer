@@ -3,6 +3,7 @@ package com.t3h.web_demo.controller;
 import com.t3h.web_demo.service.CustomerService;
 import com.t3h.web_demo.storage.entity.CustomerEntity;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController // xác định file điều hướg req/res dạng restful
-@Log4j // log in ra console thay cho system.out
+@Slf4j // log in ra console thay cho system.out
 public class CustomerController {
     @Autowired
     CustomerService customerService;
