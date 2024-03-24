@@ -23,6 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.3.2'
+	// https://mvnrepository.com/artifact/io.minio/minio
+	implementation group: 'io.minio', name: 'minio', version: '8.5.9'
 
 
 	compileOnly 'org.projectlombok:lombok'

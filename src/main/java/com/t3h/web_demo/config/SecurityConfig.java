@@ -5,6 +5,7 @@ import com.t3h.web_demo.service.UserService;
 import com.t3h.web_demo.service.impl.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,10 +28,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/api/v1/login", "/login", "/", "/api/v1/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/upload").permitAll()
                         .requestMatchers("/admin/**").hasRole(ADMIN.name())
                         .requestMatchers("/customer/**").hasRole(CUSTOMER.name())
                         .requestMatchers("/user/**").hasRole(USER.name())
-                        .requestMatchers("/api/v1/login", "/login", "/").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
