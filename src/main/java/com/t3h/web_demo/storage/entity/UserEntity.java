@@ -1,14 +1,13 @@
 package com.t3h.web_demo.storage.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Table(name = "user") // mapping entity với bảng, name = xxx dùng khi 2 tên khác nhau
 @Entity
 @Data
+@ToString
 public class UserEntity {
     @Id
     @Column(name = "user_id")
@@ -17,4 +16,13 @@ public class UserEntity {
     @Column(name = "user_name")
     public String userName;
     public String email;
+    public String avatar;
+
+    /*
+    ko ảnh hưởng quá trình mapping entity - bảng
+    bỏ qua mapping field - cột t/ứ
+    @Transient
+    List<MediaEntity> media;
+
+     */
 }
